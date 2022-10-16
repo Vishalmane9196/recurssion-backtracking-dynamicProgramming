@@ -14,11 +14,53 @@ func main() {
 	// printDecreaingIncreasingOrder(4)
 	// printIncreasingDecreasingOrder(0, 4)
 
-	res := factorial(50)
-	fmt.Println("factorial ", res)
+	// res := factorial(50)
+	// fmt.Println("factorial ", res)
+
+	/*************************************/
+	//recurssion on array
+	// arr := []int{1, 2, 9, 43, 3, 4, 5, 3}
+
+	// printArray(arr, 0, len(arr))
+	// printArrayReverse(arr, len(arr)-1)
+
+	// printArrayReverse1(arr, len(arr)-1)
+	// printArrayReverse2(&arr, len(arr)-1)
+
+	// max := arr[0]
+	// maxOfArray(arr, &max, 0, len(arr))
+	// fmt.Println("maxOfArray : ", max)
+
+	// arr := []int{1, 2, 9, 43, 3, 4, 5, 3}
+	// ans := -1
+	// firstOccurance(arr, 0, len(arr), 3, &ans)
+	// fmt.Println("firstOccurance : ", ans)
+
+	// arr := []int{1, 2, 9, 43, 3, 4, 5, 3}
+	// ans := -1
+	// lastOccurance(arr, len(arr)-1, len(arr), 3, &ans)
+	// fmt.Println("lastOccurance : ", ans)
+
+	// arr := []int{1, 2, 9, 43, 3, 4, 5, 3, 5, 2, 3, 2, 3}
+	// ans := []int{}
+	// allOccurance(arr, 0, len(arr), 3, &ans)
+	// fmt.Println("lastOccurance : ", ans)
+
+	/************************************/
+	//recurssion on string
 
 	// res := reverseString("vishal")
 	// fmt.Println(" res  : ", res)
+
+	// str := "abc"
+	// subString(str, 0)
+	// fmt.Println(" res  : ", res)
+
+	str1 := "12"
+	str2 := "123"
+	res := sumString(str1, str2)
+	fmt.Println(" sumString  : ", res)
+
 }
 
 /*

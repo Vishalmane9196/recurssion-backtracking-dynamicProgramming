@@ -1,16 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
-//Lecture 1 --> basic problem
-
+// Lecture 1 --> basic problem
 func fibo(n int) int {
 
 	//base case
 	if n <= 1 {
 		return n
 	}
-
 	//recurssive relation and processing
 	ans := fibo(n-1) + fibo(n-2)
 
@@ -22,7 +23,6 @@ func printDecreasingOrder(n int) {
 	if n < 1 {
 		return
 	}
-
 	//processing
 	fmt.Printf("%v ", n)
 	//recurssive relation
@@ -34,10 +34,8 @@ func printIncreasingOrder(n int) {
 	if n < 1 {
 		return
 	}
-
 	//recurssive relation
 	printDecreasingOrder(n - 1)
-
 	//processing
 	fmt.Printf("%v ", n)
 }
@@ -47,13 +45,10 @@ func printDecreaingIncreasingOrder(n int) {
 	if n < 1 {
 		return
 	}
-
 	//processing
 	fmt.Printf("%v ", n)
-
 	//recurssive relation
 	printDecreaingIncreasingOrder(n - 1)
-
 	//processing
 	fmt.Printf("%v ", n)
 }
@@ -63,45 +58,157 @@ func printIncreasingDecreasingOrder(curIdx, total int) {
 	if curIdx == total {
 		return
 	}
-
 	//processing
 	fmt.Printf("%v ", curIdx+1)
-
 	//recurssive call
 	printIncreasingDecreasingOrder(curIdx+1, total)
-
 	//processing
 	fmt.Printf("%v ", curIdx+1)
 }
 
-//At one point between 11 to 20 factorial will starts to give wrong answer and find out why is this behaviour
+// At one point between 11 to 20 factorial will starts to give wrong answer and find out why is this behaviour
 func factorial(n int) int {
 
 	//base case
 	if n <= 1 {
 		return 1
 	}
-
 	//recurssive relation
 	ans := n * factorial(n-1)
-
 	//processing
 	return ans
 }
 
-//string
+/****************************************************************************/
+//recurssion on array
+
+// print array
+func printArray(arr []int, index, size int) {
+
+	//base case
+	if index == size {
+		return
+	}
+	//processing
+	fmt.Printf("%v ", arr[index])
+	//recurssive call
+	printArray(arr, index+1, size)
+}
+
+// print reverse array
+func printArrayReverse(arr []int, index, size int) {
+
+	//approach one
+	//traverse till end of last element and while returning from last element print each elment
+
+	//base case
+	if index == len(arr) {
+		return
+	}
+
+	//recurssive call
+	printArrayReverse(arr, index+1, size)
+	fmt.Printf("%v ", arr[index])
+}
+
+// print reverse array
+func printArrayReverse1(arr []int, index int) {
+
+	//approach two
+	//traverse from last element to 1st element
+	//base case
+	if index < 0 {
+		return
+	}
+	//recurssive call
+	fmt.Printf("%v ", arr[index])
+	printArrayReverse1(arr, index-1)
+}
+
+// not working need to figure it out
+// print reverse array
+func printArrayReverse2(arr *[]int, size int) {
+
+	//approach thress
+	//pass the array and size and print first element of that array till size become zero
+	//base case
+	if size == 0 {
+		return
+	}
+	//recurssive call
+	fmt.Println((*arr)[0])
+	*arr = (*arr)[1:]
+	printArrayReverse1(*arr, size-1)
+}
+
+// find max of array
+func maxOfArray(arr []int, max *int, index, size int) {
+	if index == size {
+		return
+	}
+	if arr[index] > *max {
+		*max = arr[index]
+	}
+
+	maxOfArray(arr, max, index+1, size)
+}
+
+// find the first occurance of target
+func firstOccurance(arr []int, index, size, target int, ans *int) {
+	if index == size {
+		return
+	}
+
+	if arr[index] == target {
+		*ans = index
+		return
+	}
+	firstOccurance(arr, index+1, size, target, ans)
+}
+
+// find the last occurance of target
+func lastOccurance(arr []int, index, size, target int, ans *int) {
+	if index < 0 {
+		return
+	}
+
+	if arr[index] == target {
+		*ans = index
+		return
+	}
+	lastOccurance(arr, index-1, size, target, ans)
+}
+
+// find the all occurance of target
+func allOccurance(arr []int, index, size, target int, ans *[]int) {
+	if index == size {
+		return
+	}
+
+	if arr[index] == target {
+		*ans = append(*ans, index)
+	}
+	allOccurance(arr, index+1, size, target, ans)
+}
+
+/*****************************************************************************/
+//recurssion on string
 func reverseString(str string) string {
 
+	//approach 1
 	// strbyte := []byte(str)
 	// reverseStringHelper(strbyte, 0, len(str)-1)
 	// return string(strbyte)
 
+	//approach 2
 	strbyte := []byte(str)
 	var ans []byte
 	reverseStringHelper1(strbyte, &ans, 0, len(str))
 	return string(ans)
 }
 
+// approach 1
+// keep the 2 pointer which points to start and end character of the string then swap these character until you reach to middlw of staring
 func reverseStringHelper(str []byte, i, j int) {
 	if i >= j {
 		return
@@ -114,6 +221,8 @@ func reverseStringHelper(str []byte, i, j int) {
 	reverseStringHelper(str, i+1, j-1)
 }
 
+// approach 2
+// traverse till end of string and while returning apppend each charater to string
 func reverseStringHelper1(str []byte, ans *[]byte, currLength, totalLength int) {
 	if currLength == totalLength {
 		return
@@ -123,8 +232,80 @@ func reverseStringHelper1(str []byte, ans *[]byte, currLength, totalLength int) 
 	fmt.Println("ans  : ", ans)
 }
 
-//Linked list
+/*
+subsequence of substring
 
+relative ordering
+include and exclude pattern
+
+2^n where n is the string length
+
+
+                               "ab"     ""
+                              /    \
+                 include     /      \  exclude
+				 "ab"  "a"         "ab"   ""
+		i=0		  ^                       / \
+						/ \              /   \
+			include    /   \  exclude    "b"   ""
+				i=1     "ab"   "a"
+
+				the value at the lwaf nodes will be ans
+
+*/
+
+func subString(str string, index int) {
+	strByte := []byte(str)
+	subStringHelper(strByte, index, "")
+}
+
+func subStringHelper(str []byte, index int, ans string) {
+
+	//base condition
+	if index == len(str) {
+		fmt.Println("ans : ", ans)
+		return
+	}
+
+	//include
+	subStringHelper(str, index+1, ans+string(str[index]))
+
+	//exclude
+	subStringHelper(str, index+1, ans)
+}
+
+// need to figure it out why it is not working
+func sumString(a, b string) string {
+	ans := ""
+	sumStringHelper(a, b, len(a)-1, len(b)-1, 0, &ans)
+	return ans
+}
+
+func sumStringHelper(a, b string, i, j int, carry int, ans *string) {
+	//base case
+	if i < 0 && j < 0 && carry == 0 {
+		return
+	}
+
+	first, second := 0, 0
+
+	if i >= 0 {
+		first = int(a[i] - '0')
+	}
+
+	if j >= 0 {
+		second = int(b[j] - '0')
+	}
+
+	sum := first + second + carry
+	lastDigit := int(sum) % 10
+	carry = int(sum) / 10
+
+	*ans = strconv.Itoa(lastDigit) + *ans
+	sumStringHelper(a, b, i-1, j-1, carry, ans)
+}
+
+//recurssion on Linked list
 /*
 1. print the linked list
 
