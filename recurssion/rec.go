@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-// Lecture 1 --> basic problem
+/*******Basic Problems*******/
 func fibo(n int) int {
 
 	//base case
@@ -79,9 +79,7 @@ func factorial(n int) int {
 	return ans
 }
 
-/****************************************************************************/
-//recurssion on array
-
+/*********Array Problem*********/
 // print array
 func printArray(arr []int, index, size int) {
 
@@ -191,8 +189,7 @@ func allOccurance(arr []int, index, size, target int, ans *[]int) {
 	allOccurance(arr, index+1, size, target, ans)
 }
 
-/*****************************************************************************/
-//recurssion on string
+/********String Problem*********/
 func reverseString(str string) string {
 
 	//approach 1
@@ -334,3 +331,82 @@ solution==>
 			}
 		}
 */
+
+/*********Divide and conquer Problem*********/
+
+func test(arr []int) {
+	if len(arr) <= 1 {
+		fmt.Printf("%v\n", arr[s])
+		return
+	}
+	fmt.Println("arr : ", arr)
+	arr = arr[0 : (len(arr)+1)/2]
+	test(arr)
+}
+
+func test1(arr []int, s, e int) {
+
+	if s >= e {
+		fmt.Printf("%v\n", arr[s])
+		return
+	}
+
+	for i := s; i <= e; i++ {
+		fmt.Printf("%v ,", arr[i])
+	}
+	fmt.Println()
+
+	mid := (s + e) / 2
+	test1(arr, s, mid)
+}
+
+func mergesort(arr []int, s, e int) {
+
+	//b.c
+	if s >= e {
+		return
+	}
+
+	mid := s + (e-s)/2
+
+	//mergesort on left
+	mergesort(arr, s, mid)
+
+	//mergesort on right
+	mergesort(arr, mid+1, e)
+
+	merge(arr, s, mid, e)
+}
+
+remaining
+func merge(arr []int, s, mid, e int) {
+
+	len1 := mid - e + 1
+	len2 := e - mid
+
+	first := make([]int, 0)
+	second := make([]int, 0)
+
+	index1 := 0
+	for i := s; i <= mid; i++ {
+		first[index1] = arr[i]
+		index1++
+	}
+
+	index2 := 0
+	for i := mid + 1; i <= e; i++ {
+		second[index2] = arr[i]
+		index2++
+	}
+
+	i:=0
+	j:=0
+	k:=0
+
+}
+
+
+//medium level problems
+func lastRemaining(n int) int {
+    
+}

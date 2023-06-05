@@ -1,11 +1,8 @@
 package main
 
-import "fmt"
-
 func main() {
 
-	//basic questions
-
+	/*******Basic Problems*******/
 	// res := fibo(4)
 	// fmt.Println("fibo ", res)
 
@@ -17,8 +14,7 @@ func main() {
 	// res := factorial(50)
 	// fmt.Println("factorial ", res)
 
-	/*************************************/
-	//recurssion on array
+	/*********Array Problem*********/
 	// arr := []int{1, 2, 9, 43, 3, 4, 5, 3}
 
 	// printArray(arr, 0, len(arr))
@@ -46,9 +42,7 @@ func main() {
 	// allOccurance(arr, 0, len(arr), 3, &ans)
 	// fmt.Println("lastOccurance : ", ans)
 
-	/************************************/
-	//recurssion on string
-
+	/********String Problem*********/
 	// res := reverseString("vishal")
 	// fmt.Println(" res  : ", res)
 
@@ -56,10 +50,17 @@ func main() {
 	// subString(str, 0)
 	// fmt.Println(" res  : ", res)
 
-	str1 := "12"
-	str2 := "123"
-	res := sumString(str1, str2)
-	fmt.Println(" sumString  : ", res)
+	// str1 := "12"
+	// str2 := "123"
+	// res := sumString(str1, str2)
+	// fmt.Println(" sumString  : ", res)
+
+	/*********Divide and conquer Problem*********/
+	nums := []int{3, 4, 1, 5, 9, 2}
+	// test(nums)
+	test1(nums, 0, len(nums)-1)
+
+	//one merge sort and binary search
 
 }
 
